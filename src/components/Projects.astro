@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<p class="max-w-2xl text-[var(--text-muted)]">
+  Una selección de trabajos en producción. Cada uno con lo que necesitaba el cliente y cómo lo
+  resolví.
+</p>
+
+<div class="mt-6 grid gap-6 sm:grid-cols-2">
+  {projects.map((entry) => (
+    <ProjectCard entry={entry} />
+  ))}
+</div>

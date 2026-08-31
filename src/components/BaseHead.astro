@@ -1,0 +1,75 @@
+---
+// Every <head> tag for the site: meta, canonical, social, favicons, JSON-LD,
+// and the synchronous no-flash theme script (must be the first child of <head>).
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+}
+
+const { title, description, canonicalPath = '/' } = Astro.props;
+
+const canonical = new URL(canonicalPath, Astro.site).href;
+const ogImage = new URL('/og.png', Astro.site).href;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Guillermo Barazzutti',
+  jobTitle: 'Desarrollador web WordPress',
+  url: 'https://gbarazzutti.github.io/',
+  image: ogImage,
+  email: 'mailto:gbarazzutti2@gmail.com',
+  telephone: '+5493813667657',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Córdoba',
+    addressRegion: 'Córdoba',
+    addressCountry: 'AR',
+  },
+  knowsLanguage: ['es', 'en'],
+  knowsAbout: ['WordPress', 'Desarrollo web', 'Tiendas online', 'SEO', 'Mantenimiento web'],
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script is:inline>
+  (function () {
+    try {
+      var KEY = 'theme';
+      var stored = localStorage.getItem(KEY);
+      var theme = (stored === 'light' || stored === 'dark')
+        ? stored
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+      document.documentElement.style.colorScheme = theme;
+    } catch (e) { /* private mode / storage disabled: fall back to light */ }
+  })();
+</script>
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="author" content="Guillermo Barazzutti" />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Guillermo Barazzutti" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Guillermo Barazzutti — Desarrollo web para tu negocio" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(personSchema)} />

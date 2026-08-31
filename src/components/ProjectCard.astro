@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+}
+
+const { entry } = Astro.props;
+const { title, context, stack, url, displayUrl } = entry.data;
+const { Content } = await render(entry);
+---
+
+<article class="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6">
+  <h3 class="text-xl font-semibold text-[var(--text)]">{title}</h3>
+
+  <dl class="mt-4 space-y-4">
+    <div>
+      <dt class="font-semibold text-[var(--text)]">Qué era</dt>
+      <dd class="mt-1 text-[var(--text-muted)]">{context}</dd>
+    </div>
+    <div>
+      <dt class="font-semibold text-[var(--text)]">Qué hice</dt>
+      <dd class="mt-1 text-[var(--text-muted)] [&>p]:mt-2 [&>p:first-child]:mt-0">
+        <Content />
+      </dd>
+    </div>
+  </dl>
+
+  <p class="mt-4 text-sm text-[var(--text-muted)]">
+    <span class="font-semibold text-[var(--text)]">Stack</span>: {stack.join(' · ')}
+  </p>
+
+  <p class="mt-4">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-medium text-[var(--accent)] underline underline-offset-2 hover:text-[var(--accent-hover)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+    >
+      Ver sitio: {displayUrl}<span class="sr-only"> (abre en una pestaña nueva)</span>
+    </a>
+  </p>
+</article>

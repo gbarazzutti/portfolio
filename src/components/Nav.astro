@@ -1,0 +1,63 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const links = [
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#sobre-mi', label: 'Sobre mí' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<nav
+  aria-label="Principal"
+  class="sticky top-0 z-40 h-[var(--header-h)] border-b border-[var(--border)] bg-[var(--bg)]/95 backdrop-blur"
+>
+  <div class="mx-auto flex h-full max-w-5xl items-center justify-between gap-2 px-4">
+    <a href="#contenido" class="font-bold text-[var(--text)]">Guillermo Barazzutti</a>
+
+    <div class="flex items-center gap-1">
+      <!-- Desktop links -->
+      <ul class="hidden items-center gap-1 sm:flex">
+        {links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class="rounded-md px-3 py-2 text-sm font-medium text-[var(--text-muted)] hover:bg-[var(--surface)] hover:text-[var(--text)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+            >
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <ThemeToggle />
+
+      <!-- Mobile disclosure: native <details>, zero JS -->
+      <details class="relative sm:hidden">
+        <summary
+          class="flex cursor-pointer list-none items-center rounded-md p-2 text-[var(--text)] hover:bg-[var(--surface)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+          aria-label="Abrir menú"
+        >
+          <svg class="size-5" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M3 6h18M3 12h18M3 18h18"></path>
+          </svg>
+        </summary>
+        <ul
+          class="absolute right-0 mt-2 w-48 rounded-md border border-[var(--border)] bg-[var(--bg)] p-2 shadow-lg"
+        >
+          {links.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="block rounded-md px-3 py-2 text-sm font-medium text-[var(--text)] hover:bg-[var(--surface)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </div>
+  </div>
+</nav>

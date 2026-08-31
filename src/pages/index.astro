@@ -1,17 +1,29 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Projects from '../components/Projects.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+
+const title = 'Guillermo Barazzutti — Desarrollo web WordPress para tu negocio';
+const description =
+  'Desarrollador WordPress con más de 5 años de experiencia. Construyo y mantengo sitios rápidos, claros y fáciles de administrar para empresas, emprendedores y comunidades.';
 ---
 
-<!doctype html>
-<html lang="es-AR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Guillermo Barazzutti</title>
-  </head>
-  <body>
-    <main>
-      <h1>Scaffold</h1>
-    </main>
-  </body>
-</html>
+<BaseLayout title={title} description={description}>
+  <Hero />
+  <Section id="servicios" title="Qué puedo hacer por vos">
+    <Services />
+  </Section>
+  <Section id="proyectos" title="Proyectos">
+    <Projects />
+  </Section>
+  <Section id="sobre-mi" title="Sobre mí">
+    <About />
+  </Section>
+  <Section id="contacto" title="Trabajemos juntos">
+    <Contact />
+  </Section>
+</BaseLayout>
