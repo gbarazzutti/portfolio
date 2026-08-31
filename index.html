@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Developer Portfolio</title>
+    <meta name="Guillermo Barazzutti portfolio page" content="Developer Portfolio" />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__content">
+        <div class="header__logo-container">
+          <div class="header__logo-img-cont">
+            <img
+              src="assets/img/guillermo.jpg"
+              alt="Guillermo Barazzutti smiling picture"
+              class="header__logo-img"
+            />
+          </div>
+          <span class="header__logo-sub">Guillermo Barazzutti</span>
+        </div>
+        <div class="header__main">
+          <ul class="header__links">
+            <li class="header__link-wrapper">
+              <a href="index.html" class="header__link"> Home </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="index.html#projects" class="header__link">
+                Projects
+              </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="index.html#about" class="header__link">About </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="index.html#contact" class="header__link"> Contact </a>
+            </li>
+          </ul>
+          <div class="header__main-ham-menu-cont">
+            <img
+              src="assets/svg/ham-menu.svg"
+              alt="hamburger menu"
+              class="header__main-ham-menu"
+            />
+            <img
+              src="assets/svg/ham-menu-close.svg"
+              alt="hamburger menu close"
+              class="header__main-ham-menu-close d-none"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="header__sm-menu">
+        <div class="header__sm-menu-content">
+          <ul class="header__sm-menu-links">
+            <li class="header__sm-menu-link">
+              <a href="index.html"> Home </a>
+            </li>
+
+            <li class="header__sm-menu-link">
+              <a href="index.html#about"> About </a>
+            </li>
+            
+            <li class="header__sm-menu-link">
+              <a href="index.html#projects"> Projects </a>
+            </li>
+
+            <li class="header__sm-menu-link">
+              <a href="index.html#contact"> Contact </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <section class="home-hero">
+      <div class="home-hero__content">
+        <h1 class="heading-primary">Hey, My name is Guillermo Barazzutti</h1>
+        <div class="home-hero__info">
+          <p class="text-primary">
+            I am a passionate frontend developer based in Córdoba, Argentina. My specialities are HTML, CSS and JavaScript, and I love building apps that are delightful to use. Currently, I'm learning <strong>React JS</strong> and I also have experience as a backend developer in Ruby on Rails.
+          </p>
+        </div>
+        <div class="home-hero__cta">
+          <a href="./#projects" class="btn btn--bg">See my projects</a>
+        </div>
+      </div>
+      <div class="home-hero__socials">
+        <div class="home-hero__social">
+          <a href="https://www.linkedin.com/in/gbarazzutti" class="home-hero__social-icon-link">
+            <img
+              src="assets/img/linkedin-ico.png"
+              alt="icon"
+              class="home-hero__social-icon"
+            />
+          </a>
+        </div>
+        <div class="home-hero__social">
+          <a href="https://github.com/gbarazzutti" class="home-hero__social-icon-link">
+            <img
+              src="assets/img/github-ico.png"
+              alt="icon"
+              class="home-hero__social-icon"
+            />
+          </a>
+        </div>
+      </div>
+      <div class="home-hero__mouse-scroll-cont">
+        <div class="mouse"></div>
+      </div>
+    </section>
+    
+    
+        <section id="projects" class="projects sec-pad">
+      <div class="main-container">
+        <h2 class="heading heading-sec heading-sec__mb-bg">
+          <span class="heading-sec__main">Projects</span>
+          <span class="heading-sec__sub">
+            All my projects include links to the code and live version. Click the button to learn more about each one.
+          </span>
+        </h2>
+
+        <div class="projects__content">
+          <div class="projects__row">
+            <div class="projects__row-img-cont">
+              <img
+                src="assets/img/annoying-modal.png"
+                alt="Software Screenshot"
+                class="projects__row-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="projects__row-content">
+              <h3 class="projects__row-content-title">Annoying Modal</h3>
+              <p class="projects__row-content-desc">
+                This modal is a simple but effective project. If like to continue reading, you have no other option than entering you personal info.
+              </p>
+              <a
+                href="annoying-modal.html"
+                class="btn btn--med btn--theme dynamicBgClr"
+                >Learn more</a
+              >
+            </div>
+          </div>
+          <div class="projects__row">
+            <div class="projects__row-img-cont">
+              <img
+                src="assets/img/clock.png"
+                alt="Software Screenshot"
+                class="projects__row-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="projects__row-content">
+              <h3 class="projects__row-content-title">Dynamic Clock</h3>
+              <p class="projects__row-content-desc">
+                An dynamic clock built with HTML, Bootstrap CSS and Vanilla Javascript. 
+              </p>
+              <a
+                href="clock.html"
+                class="btn btn--med btn--theme dynamicBgClr"
+                >Learn more</a
+              >
+            </div>
+          </div>
+          <div class="projects__row">
+            <div class="projects__row-img-cont">
+              <img
+                src="assets/img/password.jpg"
+                alt="Software Screenshot"
+                class="projects__row-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="projects__row-content">
+              <h3 class="projects__row-content-title">Password Generator</h3>
+              <p class="projects__row-content-desc">
+                An app that generates random passwords based on a few user inputs, 
+                e.g. length, types of characters, etc. Built with HTML, CSS, and vanilla JavaScript.
+              </p>
+              <a
+                href="random-pass-generator.html"
+                class="btn btn--med btn--theme dynamicBgClr"
+                >Learn more</a
+              >
+            </div>
+          </div>
+          <div class="projects__row">
+            <div class="projects__row-img-cont">
+              <img
+                src="assets/img/chrome-extension.png"
+                alt="Software Screenshot"
+                class="projects__row-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="projects__row-content">
+              <h3 class="projects__row-content-title">Leads tracker (chrome extension)</h3>
+              <p class="projects__row-content-desc">
+                A very useful chrome extesion used to save tabs or url links of social media profiles, like Linkedin.
+              </p>
+              <a
+                href="leads-tracker.html"
+                class="btn btn--med btn--theme dynamicBgClr"
+                >Learn more</a
+              >
+            </div>
+          </div>
+          <div class="projects__row">
+            <div class="projects__row-img-cont">
+              <img
+                src="assets/img/unitConverter.png"
+                alt="Software Screenshot"
+                class="projects__row-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="projects__row-content">
+              <h3 class="projects__row-content-title">Unit Converter</h3>
+              <p class="projects__row-content-desc">
+                Tool built with HTML, CSS and Vanilla Javascript. It can convert volume, weight and length values.
+              </p>
+              <a
+                href="unit-converter.html"
+                class="btn btn--med btn--theme dynamicBgClr"
+                >Learn more</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    <section id="about" class="about sec-pad">
+      <div class="main-container">
+        <h2 class="heading heading-sec heading-sec__mb-med">
+          <span class="heading-sec__main">About Me</span>
+          <span class="heading-sec__sub">
+            <p>I'm a frontend developer based out Córdoba, Argentina. I love building apps that solve real-world problems, and that are delightful to use. My specialities include Javascript, Ruby On Rails and right now I'm learning React!.
+            </p>
+          </span>
+        </h2>
+        <div class="about__content">
+          <div class="about__content-main">
+            <h3 class="about__content-title">Get to know me!</h3>
+            <div class="about__content-details">
+              <p class="about__content-details-para">
+                Please feel free to visit my GITHUB profile to check all my work so far.
+              </p>
+            </div>
+            <a href="./#contact" class="btn btn--med btn--theme dynamicBgClr"
+              >Contact</a
+            >
+          </div>
+          <div class="about__content-skills">
+            <h3 class="about__content-title">My Skills</h3>
+            <div class="skills">
+              <div class="skills__skill">HTML</div>
+              <div class="skills__skill">CSS</div>
+              <div class="skills__skill">JavaScript</div>
+              <div class="skills__skill">Ruby On Rails</div>
+              <div class="skills__skill"><span class="blink">NEXT!</span>React</div>
+              <div class="skills__skill">Git</div>
+              <div class="skills__skill">Github</div>
+              <div class="skills__skill">Figma</div>
+              <div class="skills__skill">Tailwind CSS</div>
+              <div class="skills__skill">Bulma CSS</div>
+              <div class="skills__skill">Bootstrap CSS</div>
+              <div class="skills__skill">SQL</div>
+              <div class="skills__skill">Trello</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+
+    
+    
+    <section id="contact" class="contact sec-pad dynamicBg">
+      <div class="main-container">
+        <h2 class="heading heading-sec heading-sec__mb-med">
+          <span class="heading-sec__main heading-sec__main--lt">Contact</span>
+          <span class="heading-sec__sub heading-sec__sub--lt">
+            Please reach out if you have any questions! I'm happy to jump on a video call to brainstorm projects and ideas. Send me an email at <a target="_blank" rel="noreferrer" href="mailto:gbarazutti2@gmail.com" class="email">gbarazutti2@gmail.com</a>.
+          </span>
+        </h2>
+      </div>
+    </section>
+    <footer class="main-footer">
+      <div class="main-container">
+        <div class="main-footer__upper">
+          <div class="main-footer__row main-footer__row-1">
+            <h2 class="heading heading-sm main-footer__heading-sm">
+              <span class="text-center">Social</span>
+            </h2>
+            <div class="main-footer__social-cont">
+              <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/gbarazzutti">
+                <img
+                  class="main-footer__icon"
+                  src="assets/img/linkedin-ico.png"
+                  alt="icon"
+                />
+              </a>
+              <a target="_blank" rel="noreferrer" href="https://www.github.com/gbarazzutti">
+                <img
+                  class="main-footer__icon"
+                  src="assets/img/github-ico.png"
+                  alt="icon"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="main-footer__row main-footer__row-2">
+            <h4 class="heading heading-sm text-lt">Guillermo Barazzutti</h4>
+            <p class="main-footer__short-desc">
+              <em>"The only way to <strong> learn to code</strong>, is to write code <strong> a lot</strong>"</br>Aristoteles</em> 
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="index.js" type="text/javascript"></script>
+  </body>
+</html>
