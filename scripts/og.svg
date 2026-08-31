@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1D4ED8"/>
+      <stop offset="1" stop-color="#1E40AF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- GB monogram corner mark -->
+  <g transform="translate(915,70)">
+    <rect width="215" height="215" rx="40" fill="#FFFFFF" fill-opacity="0.12"/>
+    <text x="107" y="150" text-anchor="middle"
+          font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="120"
+          fill="#FFFFFF">GB</text>
+  </g>
+
+  <text x="80" y="330" font-family="Helvetica, Arial, sans-serif" font-weight="700"
+        font-size="88" fill="#FFFFFF">Guillermo Barazzutti</text>
+
+  <text x="80" y="405" font-family="Helvetica, Arial, sans-serif" font-weight="400"
+        font-size="44" fill="#DBEAFE">Desarrollo web para tu negocio</text>
+
+  <text x="80" y="545" font-family="Helvetica, Arial, sans-serif" font-weight="600"
+        font-size="30" fill="#BFDBFE">WordPress · Sitios institucionales · Optimización y mantenimiento</text>
+</svg>
