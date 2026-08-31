@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: overrides Tailwind v4's default prefers-color-scheme
+   behaviour so a `.dark` class on <html> is the single source of truth. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Source Sans 3 Variable is self-hosted via @fontsource-variable/source-sans-3,
+   imported once from BaseLayout.astro. Each @font-face carries a unicode-range,
+   so the browser only fetches the latin subset for this Spanish site. */
+
+:root {
+  color-scheme: light;
+  --bg:            #FFFFFF;
+  --surface:       #F1F5F9;
+  --text:          #0F172A;
+  --text-muted:    #475569;
+  --accent:        #1D4ED8;
+  --accent-hover:  #1E40AF;
+  --on-accent:     #FFFFFF;
+  --border:        #CBD5E1;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg:            #0F172A;
+  --surface:       #1E293B;
+  --text:          #E2E8F0;
+  --text-muted:    #94A3B8;
+  --accent:        #60A5FA;
+  --accent-hover:  #93C5FD;
+  --on-accent:     #0F172A;
+  --border:        #334155;
+}
+
+/* `inline` makes utilities emit var() references, so the .dark reassignment
+   above takes effect at runtime without rebuilding CSS. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-border: var(--border);
+  --font-sans: "Source Sans 3 Variable", "Source Sans 3", system-ui, -apple-system,
+               "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  :root { --header-h: 4rem; }
+  section[id] { scroll-margin-top: calc(var(--header-h) + 0.5rem); }
+
+  html { scroll-behavior: auto; }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
