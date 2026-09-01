@@ -19,10 +19,10 @@ const ico = await pngToIco([await png(16), await png(32)]);
 await writeFile(icoPath, ico);
 console.log(`wrote ${icoPath}`);
 
-// apple-touch-icon: iOS ignores alpha, so flatten onto the accent tile colour.
+// apple-touch-icon: iOS ignores alpha, so flatten onto the tile colour.
 await sharp(svg, { density: 384 })
   .resize(180, 180, { fit: 'contain' })
-  .flatten({ background: '#1D4ED8' })
+  .flatten({ background: '#111827' })
   .png()
   .toFile(applePath);
 console.log(`wrote ${applePath}`);
