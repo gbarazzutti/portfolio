@@ -1,11 +1,12 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
 
+// Absolute (`/#…`) so they also work from secondary pages like /gracias.
 const links = [
-  { href: '#servicios', label: 'Servicios' },
-  { href: '#proyectos', label: 'Proyectos' },
-  { href: '#sobre-mi', label: 'Sobre mí' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '/#servicios', label: 'Servicios' },
+  { href: '/#proyectos', label: 'Proyectos' },
+  { href: '/#sobre-mi', label: 'Sobre mí' },
+  { href: '/#contacto', label: 'Contacto' },
 ];
 ---
 
@@ -15,7 +16,7 @@ const links = [
   class="sticky top-0 z-40 h-[var(--header-h)] bg-[var(--bg)]/60 backdrop-blur transition-[background-color,box-shadow] duration-200"
 >
   <div class="mx-auto flex h-full max-w-5xl items-center justify-between gap-2 px-4">
-    <a href="#contenido" class="font-bold text-[var(--text)]">Guillermo Barazzutti</a>
+    <a href="/" class="font-bold text-[var(--text)]">Guillermo Barazzutti</a>
 
     <div class="flex items-center gap-1">
       <!-- Desktop links -->

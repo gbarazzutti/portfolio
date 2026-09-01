@@ -2,13 +2,17 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-// GitHub Pages *user* page: serves from the domain root, so `site` is set and
-// `base` is deliberately omitted.
+// Deployed to Netlify at the site root, so `site` is set and `base` is omitted.
 export default defineConfig({
-  site: 'https://gbarazzutti.github.io',
+  site: 'https://guillermobarazzutti.netlify.app',
   output: 'static',
   trailingSlash: 'ignore',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // /gracias is a post-submit page — noindex, keep it out of the sitemap.
+      filter: (page) => !page.endsWith('/gracias') && !page.endsWith('/gracias/'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

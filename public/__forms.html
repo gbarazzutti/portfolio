@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify form detection</title>
+  </head>
+  <body>
+    <!--
+      Static mirror of the contact form so Netlify's build-time form parser
+      always registers it, regardless of how the Astro page is processed.
+      Not linked from anywhere; not for humans.
+    -->
+    <form name="contacto" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contacto" />
+      <input name="bot-field" />
+      <input name="nombre" type="text" />
+      <input name="email" type="email" />
+      <textarea name="mensaje"></textarea>
+    </form>
+  </body>
+</html>

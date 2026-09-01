@@ -1,5 +1,9 @@
 ---
-// Email + WhatsApp only. No form, no LinkedIn, no GitHub.
+// Contact panel: quick links (email + WhatsApp) plus a Netlify form.
+// The form is picked up by Netlify's build-time form parser via `data-netlify`;
+// `public/__forms.html` mirrors the fields as a detection fallback.
+const inputClass =
+  'rounded-md border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2 text-[var(--text)] placeholder:text-[var(--text-muted)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]';
 ---
 <div
   class="relative isolate overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8 sm:p-10"
@@ -47,5 +51,45 @@
       </svg>
       WhatsApp: +54 381 366 7657<span class="sr-only"> (abre en una pestaña nueva)</span>
     </a>
+  </div>
+
+  <div class="mt-8 border-t border-[var(--border)] pt-8">
+    <p class="text-sm font-semibold text-[var(--text)]">O escribime desde acá</p>
+
+    <form
+      name="contacto"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      action="/gracias"
+      class="mt-4 grid max-w-xl gap-4"
+    >
+      <input type="hidden" name="form-name" value="contacto" />
+      <p class="hidden">
+        <label>No completes esto si sos humano: <input name="bot-field" /></label>
+      </p>
+
+      <div class="grid gap-1.5">
+        <label for="nombre" class="text-sm font-medium text-[var(--text)]">Nombre</label>
+        <input id="nombre" name="nombre" type="text" required autocomplete="name" class={inputClass} />
+      </div>
+
+      <div class="grid gap-1.5">
+        <label for="email" class="text-sm font-medium text-[var(--text)]">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email" class={inputClass} />
+      </div>
+
+      <div class="grid gap-1.5">
+        <label for="mensaje" class="text-sm font-medium text-[var(--text)]">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required class={inputClass}></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="inline-flex w-fit items-center gap-2 rounded-md bg-[var(--accent)] px-5 py-3 font-semibold text-[var(--on-accent)] transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--accent-hover)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+      >
+        Enviar mensaje
+      </button>
+    </form>
   </div>
 </div>

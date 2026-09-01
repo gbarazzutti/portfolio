@@ -5,9 +5,10 @@ interface Props {
   title: string;
   description: string;
   canonicalPath?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonicalPath = '/' } = Astro.props;
+const { title, description, canonicalPath = '/', noindex = false } = Astro.props;
 
 const canonical = new URL(canonicalPath, Astro.site).href;
 const ogImage = new URL('/og.png', Astro.site).href;
@@ -54,7 +55,7 @@ const personSchema = {
 <meta name="description" content={description} />
 <meta name="author" content="Guillermo Barazzutti" />
 <link rel="canonical" href={canonical} />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 <meta name="theme-color" content="#0B1120" />
 <link rel="icon" href="/favicon.ico" sizes="32x32" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

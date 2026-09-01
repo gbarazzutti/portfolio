@@ -10,15 +10,21 @@ interface Props {
   title: string;
   description: string;
   canonicalPath?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonicalPath = '/' } = Astro.props;
+const { title, description, canonicalPath = '/', noindex = false } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es-AR" class="dark scroll-smooth">
   <head>
-    <BaseHead title={title} description={description} canonicalPath={canonicalPath} />
+    <BaseHead
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      noindex={noindex}
+    />
   </head>
   <body class="bg-[var(--bg)] text-[var(--text)] antialiased">
     <SkipLink />
