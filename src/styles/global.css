@@ -186,4 +186,23 @@
   .service-card:focus-within::before {
     transform: scaleX(1);
   }
+
+  /* Two-up project cards share row tracks via subgrid so the image, title,
+     "Qué era", "Qué hice", Stack and link rows line up across columns even
+     when the copy lengths differ. Single column below sm: plain flex.
+     `display` lives here, not in a utility class, so it isn't overridden by
+     Tailwind's utilities layer. */
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .projects-grid > .project-card {
+      display: grid;
+      grid-row: span 6;
+      grid-template-rows: subgrid;
+      row-gap: 1rem;
+    }
+  }
 }

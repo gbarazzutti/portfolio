@@ -109,7 +109,7 @@ describe('dist/index.html content matches the content collections', () => {
   it('labels each project card with "Qué era" and "Qué hice" and a Stack line', () => {
     expect(html.match(/Qué era/g) ?? []).toHaveLength(4);
     expect(html.match(/Qué hice/g) ?? []).toHaveLength(4);
-    expect(html.match(/Stack<\/span>/g) ?? []).toHaveLength(4);
+    expect(html.match(/>Stack</g) ?? []).toHaveLength(4);
   });
 
   it('renders the Spanish section headings', () => {

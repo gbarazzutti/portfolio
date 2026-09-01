@@ -13,39 +13,38 @@ const { Content } = await render(entry);
 ---
 
 <article
-  class="group flex h-full flex-col rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-lg"
+  class="project-card group rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-lg"
 >
   <BrowserFrame src={image} alt={`Captura del sitio ${title}`} domain={displayUrl} />
 
-  <h3 class="mt-4 text-xl font-semibold text-[var(--text)]">{title}</h3>
+  <h3 class="text-xl font-semibold text-[var(--text)]">{title}</h3>
 
-  <dl class="mt-3 space-y-3">
-    <div>
-      <dt class="font-semibold text-[var(--text)]">Qué era</dt>
-      <dd class="mt-1 text-[var(--text-muted)]">{context}</dd>
+  <div>
+    <p class="font-semibold text-[var(--text)]">Qué era</p>
+    <p class="mt-1 text-[var(--text-muted)]">{context}</p>
+  </div>
+
+  <div>
+    <p class="font-semibold text-[var(--text)]">Qué hice</p>
+    <div class="mt-1 text-[var(--text-muted)] [&>p]:mt-2 [&>p:first-child]:mt-0">
+      <Content />
     </div>
-    <div>
-      <dt class="font-semibold text-[var(--text)]">Qué hice</dt>
-      <dd class="mt-1 text-[var(--text-muted)] [&>p]:mt-2 [&>p:first-child]:mt-0">
-        <Content />
-      </dd>
-    </div>
-  </dl>
+  </div>
 
-  <p class="mt-4 text-sm">
-    <span class="font-semibold text-[var(--text)]">Stack</span>
-  </p>
-  <ul class="mt-2 flex flex-wrap gap-2">
-    {stack.map((tech) => (
-      <li
-        class="rounded-full border border-[var(--border)] px-2.5 py-0.5 text-xs text-[var(--text-muted)]"
-      >
-        {tech}
-      </li>
-    ))}
-  </ul>
+  <div>
+    <p class="text-sm font-semibold text-[var(--text)]">Stack</p>
+    <ul class="mt-2 flex flex-wrap gap-2">
+      {
+        stack.map((tech) => (
+          <li class="rounded-full border border-[var(--border)] px-2.5 py-0.5 text-xs text-[var(--text-muted)]">
+            {tech}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 
-  <p class="mt-auto pt-4">
+  <p class="self-start">
     <a
       href={url}
       target="_blank"
