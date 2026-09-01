@@ -1,35 +1,65 @@
 @import "tailwindcss";
 
 /* Class-based dark mode: overrides Tailwind v4's default prefers-color-scheme
-   behaviour so a `.dark` class on <html> is the single source of truth. */
+   behaviour so a `.dark` class on <html> is the single source of truth.
+   Dark is the site DEFAULT (see BaseHead.astro no-flash script). */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Source Sans 3 Variable is self-hosted via @fontsource-variable/source-sans-3,
    imported once from BaseLayout.astro. Each @font-face carries a unicode-range,
    so the browser only fetches the latin subset for this Spanish site. */
 
+/* ------------------------------------------------------------------------- *
+ * Palette — dark-first, WCAG AA verified in BOTH themes.
+ * Contrast ratios (WCAG 2.x relative luminance, computed manually):
+ *
+ * LIGHT (:root, toggle target)
+ *   #0C1220 text     on #FFFFFF bg        18.7:1   (body   AA/AAA)
+ *   #48566E muted    on #FFFFFF bg         7.4:1   (body   AA/AAA)
+ *   #48566E muted    on #F4F7FC surface    6.9:1   (body   AA)
+ *   #1D4ED8 accent   on #FFFFFF bg         6.7:1   (body   AA)
+ *   #FFFFFF on-accent on #1D4ED8 accent    6.7:1   (button AA)
+ *   #D9E0EC border   on #FFFFFF bg        ~1.2:1   (decorative only, not a control affordance)
+ *
+ * DARK (.dark, default)
+ *   #EAF1FC text     on #0B1120 bg        16.6:1   (body   AA/AAA)
+ *   #A2B3D0 muted    on #0B1120 bg         8.9:1   (body   AA/AAA)
+ *   #A2B3D0 muted    on #131D33 surface    7.9:1   (body   AA)
+ *   #A2B3D0 muted    on #1A2540 surface-2  7.2:1   (body   AA)
+ *   #5B9DFF accent   on #0B1120 bg         6.9:1   (body   AA)
+ *   #5B9DFF accent   on #131D33 surface    6.2:1   (body   AA)
+ *   #06101F on-accent on #5B9DFF accent    7.0:1   (button AA)
+ *   #26334D border   on #0B1120 bg        ~1.5:1   (decorative only, not a control affordance)
+ *
+ * --accent-2 is decoration/gradient only — never used as text on a background.
+ * ------------------------------------------------------------------------- */
+
 :root {
   color-scheme: light;
   --bg:            #FFFFFF;
-  --surface:       #F1F5F9;
-  --text:          #0F172A;
-  --text-muted:    #475569;
+  --surface:       #F4F7FC;
+  --surface-2:     #FFFFFF;
+  --text:          #0C1220;
+  --text-muted:    #48566E;
   --accent:        #1D4ED8;
   --accent-hover:  #1E40AF;
+  --accent-2:      #6D28D9;
   --on-accent:     #FFFFFF;
-  --border:        #CBD5E1;
+  --border:        #D9E0EC;
 }
 
 .dark {
   color-scheme: dark;
-  --bg:            #0F172A;
-  --surface:       #1E293B;
-  --text:          #E2E8F0;
-  --text-muted:    #94A3B8;
-  --accent:        #60A5FA;
-  --accent-hover:  #93C5FD;
-  --on-accent:     #0F172A;
-  --border:        #334155;
+  --bg:            #0B1120;
+  --surface:       #131D33;
+  --surface-2:     #1A2540;
+  --text:          #EAF1FC;
+  --text-muted:    #A2B3D0;
+  --accent:        #5B9DFF;
+  --accent-hover:  #8FBEFF;
+  --accent-2:      #8A6BFF;
+  --on-accent:     #06101F;
+  --border:        #26334D;
 }
 
 /* `inline` makes utilities emit var() references, so the .dark reassignment
@@ -37,10 +67,12 @@
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-accent-2: var(--accent-2);
   --color-on-accent: var(--on-accent);
   --color-border: var(--border);
   --font-sans: "Source Sans 3 Variable", "Source Sans 3", system-ui, -apple-system,
@@ -52,6 +84,9 @@
     background-color: var(--bg);
     color: var(--text);
     font-family: var(--font-sans);
+    /* Contain decorative glows (hero / about) so they never widen the page.
+       `clip` (not `hidden`) keeps position: sticky on the nav working. */
+    overflow-x: clip;
   }
 
   :focus-visible {
@@ -74,5 +109,81 @@
       transition-duration: .01ms !important;
       scroll-behavior: auto !important;
     }
+    /* Reveal-on-scroll must never leave content hidden without motion. */
+    html.js .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+@layer components {
+  /* Sticky nav: transparent-ish at rest, solid + hairline + shadow once scrolled.
+     The base translucent background comes from a Tailwind utility on the element;
+     the id selector here wins on specificity for the scrolled state. */
+  #site-nav.nav-scrolled {
+    background-color: color-mix(in srgb, var(--bg) 95%, transparent);
+    box-shadow: inset 0 -1px 0 var(--border), 0 6px 16px -10px rgb(0 0 0 / 0.35);
+  }
+
+  /* One-shot reveal-on-scroll. Hidden state only applies when JS is on
+     (html.js) and motion is allowed, so no-JS / reduced-motion users always
+     see content. Toggled to .is-visible by a single IntersectionObserver. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+    html.js .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Static hero glow — decorative, non-interactive, no motion. */
+  .hero-glow::before {
+    content: "";
+    position: absolute;
+    inset: -20% 0 auto 0;
+    height: 520px;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(55% 60% at 28% 20%,
+        color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+      radial-gradient(45% 55% at 82% 0%,
+        color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 70%);
+  }
+
+  /* Soft blurred accent halo behind the About portrait. Decorative.
+     `inset: 0` keeps the box within layout; the visible halo comes purely from
+     `filter: blur()` (ink overflow — never widens the page). */
+  .about-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 1.5rem;
+    pointer-events: none;
+    background: radial-gradient(closest-side,
+      color-mix(in srgb, var(--accent) 30%, transparent), transparent);
+    filter: blur(34px);
+  }
+
+  /* Service card: 2px accent bar that wipes in on hover. */
+  .service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms ease;
+  }
+  .service-card:hover::before,
+  .service-card:focus-within::before {
+    transform: scaleX(1);
   }
 }

@@ -19,18 +19,20 @@ const services = defineCollection({
 // `context` has no upper bound — the real brief copy exceeds any short cap.
 const projects = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/projects' }),
-  schema: z.object({
-    title: z.string().min(3).max(80),
-    client: z.string().min(2).max(80),
-    context: z.string().min(20),
-    summary: z.string().min(20).optional(),
-    url: z.string().url(),
-    displayUrl: z.string().min(3),
-    stack: z.array(z.string().min(1)).min(1).max(8),
-    year: z.number().int().min(2015).max(2100).optional(),
-    order: z.number().int().positive(),
-    draft: z.boolean().default(false),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string().min(3).max(80),
+      client: z.string().min(2).max(80),
+      context: z.string().min(20),
+      summary: z.string().min(20).optional(),
+      image: image(),
+      url: z.string().url(),
+      displayUrl: z.string().min(3),
+      stack: z.array(z.string().min(1)).min(1).max(8),
+      year: z.number().int().min(2015).max(2100).optional(),
+      order: z.number().int().positive(),
+      draft: z.boolean().default(false),
+    }),
 });
 
 export const collections = { services, projects };

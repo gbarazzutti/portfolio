@@ -2,6 +2,7 @@
 title: "Saint Peter To Rot"
 client: "Saint Peter To Rot"
 context: "Sitio devocional dedicado al primer santo canonizado de Papúa Nueva Guinea. Necesitaba presencia internacional, buen posicionamiento y carga rápida."
+image: "../../assets/projects/saint-peter-to-rot.jpg"
 url: "https://saintpetertorot.com"
 displayUrl: "saintpetertorot.com"
 stack: ["WordPress", "Elementor", "ACF", "Rank Math", "WP Rocket", "GA4"]

@@ -2,6 +2,7 @@
 title: "Voz Católica"
 client: "Voz Católica"
 context: "Portal católico de evangelización y formación: artículos, homilías, reflexiones, videos y recursos espirituales. Una red de más de 20 sitios multilingües en producción, con gran volumen de contenido: libros, cursos, devocionales y homilías."
+image: "../../assets/projects/voz-catolica.jpg"
 url: "https://vozcatolica.com"
 displayUrl: "vozcatolica.com"
 stack: ["WordPress", "Elementor", "ACF", "PHP a medida", "Rank Math"]

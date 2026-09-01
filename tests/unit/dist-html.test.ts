@@ -100,7 +100,7 @@ describe('dist/index.html content matches the content collections', () => {
       'vozcatolica.com',
       'saintpetertorot.com',
       'ejerciciosespirituales.org',
-      'maradentro.iveamerica.com',
+      'maradentro.ive.org',
     ]) {
       expect(html).toContain(host);
     }

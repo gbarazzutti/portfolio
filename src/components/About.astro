@@ -4,15 +4,17 @@ import photo from '../assets/photo.png';
 ---
 
 <div class="grid gap-8 sm:grid-cols-[auto_1fr] sm:items-start">
-  <Image
-    src={photo}
-    alt="Guillermo Barazzutti"
-    width={320}
-    height={320}
-    loading="lazy"
-    decoding="async"
-    class="rounded-lg border border-[var(--border)]"
-  />
+  <div class="about-photo relative isolate w-fit">
+    <Image
+      src={photo}
+      alt="Guillermo Barazzutti"
+      width={320}
+      height={320}
+      loading="lazy"
+      decoding="async"
+      class="rounded-2xl ring-1 ring-[var(--border)]"
+    />
+  </div>
   <div class="space-y-4 text-[var(--text-muted)]">
     <p>
       Soy desarrollador web hace más de 5 años, especializado en WordPress. Actualmente desarrollo y
@@ -29,5 +31,19 @@ import photo from '../assets/photo.png';
       que el cliente pueda administrar por su cuenta. Trabajo de forma remota desde Córdoba,
       Argentina.
     </p>
+    <ul class="mt-6 flex flex-wrap gap-3" aria-hidden="true">
+      <li class="rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-4 py-3">
+        <span class="block text-xl font-bold text-[var(--text)]">5+</span>
+        <span class="block text-sm text-[var(--text-muted)]">años</span>
+      </li>
+      <li class="rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-4 py-3">
+        <span class="block text-xl font-bold text-[var(--text)]">20+</span>
+        <span class="block text-sm text-[var(--text-muted)]">sitios en producción</span>
+      </li>
+      <li class="rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-4 py-3">
+        <span class="block text-xl font-bold text-[var(--text)]">Remoto</span>
+        <span class="block text-sm text-[var(--text-muted)]">Córdoba, AR</span>
+      </li>
+    </ul>
   </div>
 </div>

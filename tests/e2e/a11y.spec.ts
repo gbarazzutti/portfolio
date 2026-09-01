@@ -14,10 +14,39 @@ async function expectNoSeriousViolations(page: Page) {
   ).toEqual([]);
 }
 
+// Sections use a one-shot IntersectionObserver reveal (opacity:0 until seen).
+// Step through the whole page so every `.reveal` block is painted before axe
+// runs — otherwise axe skips contrast checks on still-hidden content.
+async function revealWholePage(page: Page) {
+  await page.evaluate(async () => {
+    await new Promise<void>((resolve) => {
+      let y = 0;
+      const tick = () => {
+        window.scrollTo(0, y);
+        y += Math.round(window.innerHeight * 0.8);
+        if (y < document.body.scrollHeight) {
+          requestAnimationFrame(tick);
+        } else {
+          window.scrollTo(0, document.body.scrollHeight);
+          setTimeout(() => {
+            window.scrollTo(0, 0);
+            resolve();
+          }, 100);
+        }
+      };
+      tick();
+    });
+  });
+  await page.waitForTimeout(500);
+}
+
 test.describe('accessibility — light theme', () => {
   test('no serious or critical axe violations', async ({ page }) => {
+    // Dark is the site default now: opt into light explicitly.
+    await page.addInitScript(() => localStorage.setItem('theme', 'light'));
     await page.goto('/');
     await expect(page.locator('html')).not.toHaveClass(/dark/);
+    await revealWholePage(page);
     await expectNoSeriousViolations(page);
   });
 
@@ -53,6 +82,7 @@ test.describe('accessibility — dark theme', () => {
     await page.addInitScript(() => localStorage.setItem('theme', 'dark'));
     await page.goto('/');
     await expect(page.locator('html')).toHaveClass(/dark/);
+    await revealWholePage(page);
     await expectNoSeriousViolations(page);
   });
 
@@ -63,31 +93,47 @@ test.describe('accessibility — dark theme', () => {
   });
 });
 
-test.describe('theme — system preference', () => {
-  test.use({ colorScheme: 'dark' });
+test.describe('theme — system preference is ignored, dark is the default', () => {
+  test.describe('OS prefers dark', () => {
+    test.use({ colorScheme: 'dark' });
 
-  test('applies dark when the OS prefers dark and no choice is stored', async ({ page }) => {
-    await page.addInitScript(() => localStorage.clear());
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
-    expect(await page.evaluate(() => localStorage.getItem('theme'))).toBeNull();
-    await expect(page.locator('html')).toHaveClass(/dark/);
+    test('empty storage resolves to dark', async ({ page }) => {
+      await page.addInitScript(() => localStorage.clear());
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
+      expect(await page.evaluate(() => localStorage.getItem('theme'))).toBeNull();
+      await expect(page.locator('html')).toHaveClass(/dark/);
+    });
+  });
+
+  test.describe('OS prefers light', () => {
+    test.use({ colorScheme: 'light' });
+
+    test('empty storage STILL resolves to dark (new default)', async ({ page }) => {
+      await page.addInitScript(() => localStorage.clear());
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
+      expect(await page.evaluate(() => localStorage.getItem('theme'))).toBeNull();
+      await expect(page.locator('html')).toHaveClass(/dark/);
+    });
   });
 });
 
 test.describe('theme toggle', () => {
-  test('click flips .dark and the choice persists across reload', async ({ page }) => {
+  test('click flips .dark from the dark default and the choice persists across reload', async ({
+    page,
+  }) => {
     await page.goto('/');
-    await expect(page.locator('html')).not.toHaveClass(/dark/);
-
-    await page.locator('#theme-toggle').click();
-    await expect(page.locator('html')).toHaveClass(/dark/);
-    expect(await page.evaluate(() => localStorage.getItem('theme'))).toBe('dark');
-
-    await page.reload();
+    // Starts dark (default, no stored choice).
     await expect(page.locator('html')).toHaveClass(/dark/);
 
     await page.locator('#theme-toggle').click();
     await expect(page.locator('html')).not.toHaveClass(/dark/);
     expect(await page.evaluate(() => localStorage.getItem('theme'))).toBe('light');
+
+    await page.reload();
+    await expect(page.locator('html')).not.toHaveClass(/dark/);
+
+    await page.locator('#theme-toggle').click();
+    await expect(page.locator('html')).toHaveClass(/dark/);
+    expect(await page.evaluate(() => localStorage.getItem('theme'))).toBe('dark');
   });
 });

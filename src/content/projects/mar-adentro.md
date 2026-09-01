@@ -2,8 +2,9 @@
 title: "Mar Adentro"
 client: "Mar Adentro"
 context: "Apostolado digital del Instituto del Verbo Encarnado dedicado a la formación espiritual y la evangelización, inspirado en el 'Duc in altum' del Evangelio."
-url: "https://maradentro.iveamerica.com"
-displayUrl: "maradentro.iveamerica.com"
+image: "../../assets/projects/mar-adentro.jpg"
+url: "https://maradentro.ive.org"
+displayUrl: "maradentro.ive.org"
 stack: ["WordPress", "Elementor", "ACF"]
 order: 4
 ---

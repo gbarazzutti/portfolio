@@ -2,6 +2,7 @@
 title: "Ejercicios Espirituales"
 client: "Ejercicios Espirituales"
 context: "Plataforma de formación católica online orientada a los Ejercicios Espirituales de San Ignacio y a los retiros espirituales."
+image: "../../assets/projects/ejercicios-espirituales.jpg"
 url: "https://ejerciciosespirituales.org"
 displayUrl: "ejerciciosespirituales.org"
 stack: ["WordPress", "Elementor", "LearnDash", "ACF", "SupportCandy"]
