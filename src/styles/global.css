@@ -156,10 +156,10 @@
         color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 70%);
   }
 
-  /* Soft blurred accent halo behind the About portrait. Decorative.
+  /* Soft blurred accent halo behind the hero portrait. Decorative.
      `inset: 0` keeps the box within layout; the visible halo comes purely from
      `filter: blur()` (ink overflow — never widens the page). */
-  .about-photo::before {
+  .portrait-glow::before {
     content: "";
     position: absolute;
     inset: 0;
