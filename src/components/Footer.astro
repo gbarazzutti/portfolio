@@ -1,19 +1,24 @@
 ---
 const year = 2026;
+// The contact section sits right above the footer on the home page, so the
+// footer's "Contacto" link is only useful on the other pages.
+const showContactLink = Astro.url.pathname !== '/';
 ---
 <footer class="border-t border-[var(--border)] bg-[var(--bg)]">
   <div
-    class="mx-auto flex max-w-5xl flex-col gap-2 px-4 pt-10 pb-4 text-sm text-[var(--text-muted)] sm:flex-row sm:items-center sm:justify-between"
+    class="mx-auto flex max-w-5xl flex-col gap-3 px-4 pt-10 pb-4 text-sm text-[var(--text-muted)] sm:flex-row sm:items-center sm:justify-between"
   >
     <p>© {year} Guillermo Barazzutti · Argentina</p>
-    <a
-      href="/#contacto"
-      class="inline-flex w-fit items-center rounded-md border border-[var(--accent)]/40 px-4 py-2 font-semibold text-[var(--accent)] transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--accent)]/10 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
-    >
-      Contacto
-    </a>
+    {
+      showContactLink && (
+        <a
+          href="/#contacto"
+          class="inline-flex w-fit items-center rounded-md border border-[var(--accent)]/40 px-4 py-2 font-semibold text-[var(--accent)] transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--accent)]/10 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+        >
+          Contacto
+        </a>
+      )
+    }
   </div>
-  <p class="px-4 pb-8 text-xs text-[var(--text-muted)] italic sm:text-center">
-    Ad maiorem Dei gloriam
-  </p>
+  <p class="px-4 pb-8 text-center text-xs text-[var(--text-muted)] italic">Ad maiorem Dei gloriam</p>
 </footer>
