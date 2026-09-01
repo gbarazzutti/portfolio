@@ -16,7 +16,23 @@ const links = [
   class="sticky top-0 z-40 h-[var(--header-h)] bg-[var(--bg)]/60 backdrop-blur transition-[background-color,box-shadow] duration-200"
 >
   <div class="mx-auto flex h-full max-w-5xl items-center justify-between gap-2 px-4">
-    <a href="/" class="font-bold text-[var(--text)]">Guillermo Barazzutti</a>
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 font-bold text-[var(--text)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+    >
+      <svg class="size-7 shrink-0" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="var(--accent)"></rect>
+        <path
+          fill="#FFFFFF"
+          d="M20.6 14.2c3.2 0 6 1 8.2 2.7l-3 3.9c-1.5-1.1-3.2-1.7-5.1-1.7-4.3 0-7.4 3.3-7.4 7.9s3.1 8 7.5 8c1.6 0 3-.3 4.1-.9v-4.6h-5.1v-4.7h10.3v12.2c-2.4 1.8-5.7 2.9-9.5 2.9-7.6 0-13-5.4-13-13S13.1 14.2 20.6 14.2Z"
+        ></path>
+        <path
+          fill="#FFFFFF"
+          d="M35.9 14.7h9.8c5.3 0 8.6 2.5 8.6 6.7 0 2.6-1.4 4.5-3.6 5.4 2.9.8 4.7 2.9 4.7 6 0 4.5-3.5 7.2-9.2 7.2H35.9Zm9.2 9.9c2.2 0 3.5-1 3.5-2.8s-1.3-2.7-3.5-2.7h-3.8v5.5Zm.5 10.5c2.4 0 3.8-1.1 3.8-3s-1.4-3-3.8-3h-4.3v6Z"
+        ></path>
+      </svg>
+      Guillermo Barazzutti
+    </a>
 
     <div class="flex items-center gap-1">
       <!-- Desktop links -->
