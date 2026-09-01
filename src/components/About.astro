@@ -1,9 +1,9 @@
 ---
-// Text + stats. The portrait now lives in the Hero.
+// Text + stats, two columns on desktop. The portrait lives in the Hero.
 ---
 
-<div class="space-y-8">
-  <div class="max-w-3xl space-y-4 text-[var(--text-muted)]">
+<div class="grid gap-8 lg:grid-cols-[1fr_16rem] lg:gap-12">
+  <div class="space-y-4 text-[var(--text-muted)]">
     <p>
       Soy desarrollador web hace más de 5 años, especializado en WordPress. Actualmente desarrollo y
       mantengo más de 20 sitios en producción, muchos de ellos multilingües y con grandes volúmenes
@@ -20,18 +20,24 @@
     </p>
   </div>
 
-  <ul class="grid gap-4 sm:grid-cols-3" aria-hidden="true">
-    <li class="rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-4 py-3">
-      <span class="block text-xl font-bold text-[var(--text)]">5+</span>
-      <span class="block text-sm text-[var(--text-muted)]">años</span>
+  <ul class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1" aria-hidden="true">
+    <li
+      class="flex flex-col items-center justify-center gap-1 rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-4 py-6 text-center"
+    >
+      <span class="text-4xl font-bold text-[var(--text)]">5+</span>
+      <span class="text-base text-[var(--text-muted)]">años</span>
     </li>
-    <li class="rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-4 py-3">
-      <span class="block text-xl font-bold text-[var(--text)]">20+</span>
-      <span class="block text-sm text-[var(--text-muted)]">sitios en producción</span>
+    <li
+      class="flex flex-col items-center justify-center gap-1 rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-4 py-6 text-center"
+    >
+      <span class="text-4xl font-bold text-[var(--text)]">20+</span>
+      <span class="text-base text-[var(--text-muted)]">sitios en producción</span>
     </li>
-    <li class="rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-4 py-3">
-      <span class="block text-xl font-bold text-[var(--text)]">Remoto</span>
-      <span class="block text-sm text-[var(--text-muted)]">Argentina</span>
+    <li
+      class="flex flex-col items-center justify-center gap-1 rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-4 py-6 text-center"
+    >
+      <span class="text-4xl font-bold text-[var(--text)]">Remoto</span>
+      <span class="text-base text-[var(--text-muted)]">Argentina</span>
     </li>
   </ul>
 </div>
