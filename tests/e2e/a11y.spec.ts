@@ -63,6 +63,17 @@ test.describe('accessibility — dark theme', () => {
   });
 });
 
+test.describe('theme — system preference', () => {
+  test.use({ colorScheme: 'dark' });
+
+  test('applies dark when the OS prefers dark and no choice is stored', async ({ page }) => {
+    await page.addInitScript(() => localStorage.clear());
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    expect(await page.evaluate(() => localStorage.getItem('theme'))).toBeNull();
+    await expect(page.locator('html')).toHaveClass(/dark/);
+  });
+});
+
 test.describe('theme toggle', () => {
   test('click flips .dark and the choice persists across reload', async ({ page }) => {
     await page.goto('/');
