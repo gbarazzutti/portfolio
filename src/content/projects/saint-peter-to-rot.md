@@ -8,4 +8,4 @@ displayUrl: "saintpetertorot.com"
 stack: ["WordPress", "Elementor", "ACF", "Rank Math", "WP Rocket", "GA4"]
 order: 2
 ---
-Desarrollé el sitio completo con contenido dinámico que el cliente puede administrar. Configuré todo el SEO, optimicé la velocidad de carga e integré analítica (GA4) para medir el alcance. El sitio carga rápido y está preparado para aparecer en las búsquedas de todo el mundo.
+Desarrollé el sitio completo con contenido dinámico que el cliente puede administrar. Configuré todo el SEO, optimicé la velocidad de carga e integré GA4 para medir el alcance. Carga rápido y está preparado para aparecer en buscadores de todo el mundo.

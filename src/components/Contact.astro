@@ -17,13 +17,13 @@ const btn =
   </div>
 
   <div class="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
-    <div>
+    <div class="flex flex-col justify-between gap-8">
       <p class="text-[var(--text-muted)]">
         ¿Tenés un proyecto en mente o un sitio que necesita mejoras? Escribime y lo conversamos sin
         compromiso.
       </p>
 
-      <div class="mt-6 flex flex-col gap-3">
+      <div class="flex flex-col gap-3">
         <a
           href="mailto:gbarazzutti2@gmail.com"
           class={`${btn} w-full bg-[var(--accent)] text-[var(--on-accent)] hover:bg-[var(--accent-hover)]`}
@@ -58,29 +58,22 @@ const btn =
         </a>
       </div>
 
-      <div class="mt-6 space-y-1 text-sm text-[var(--text-muted)]">
-        <p class="inline-flex items-center gap-2">
-          <svg
-            class="size-4 shrink-0 text-[var(--accent)]"
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="9"></circle>
-            <path d="M12 7v5l3 2"></path>
-          </svg>
-          Respondo en el día.
-        </p>
-        <p>
-          <span class="font-semibold text-[var(--text)]">+5 años</span>
-          <span class="mx-1.5">·</span>
-          <span class="font-semibold text-[var(--text)]">+20 sitios</span>
-        </p>
-      </div>
+      <p class="inline-flex items-center gap-2 text-sm text-[var(--text-muted)]">
+        <svg
+          class="size-4 shrink-0 text-[var(--accent)]"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 7v5l3 2"></path>
+        </svg>
+        Respondo en el día.
+      </p>
     </div>
 
     <div

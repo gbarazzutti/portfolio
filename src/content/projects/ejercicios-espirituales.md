@@ -8,4 +8,4 @@ displayUrl: "ejerciciosespirituales.org"
 stack: ["WordPress", "Elementor", "LearnDash", "ACF", "SupportCandy"]
 order: 3
 ---
-Desarrollé y mantengo la plataforma en WordPress. Implementé y administro LearnDash para los cursos: configuración de cursos, lecciones y acceso de alumnos. Personalicé el diseño de la plataforma, desarrollé shortcodes a medida y ajustes de CSS, mejoré la experiencia de uso e integré herramientas de formación online. También doy soporte técnico y resuelvo incidencias.
+Desarrollo y mantengo la plataforma en WordPress, con LearnDash para los cursos: configuración de cursos, lecciones y acceso de alumnos. Personalicé el diseño, sumé shortcodes a medida y ajustes de CSS, e integré herramientas de formación online.

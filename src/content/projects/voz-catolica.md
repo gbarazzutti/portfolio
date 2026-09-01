@@ -8,4 +8,4 @@ displayUrl: "vozcatolica.com"
 stack: ["WordPress", "Elementor", "ACF", "PHP a medida", "Rank Math"]
 order: 1
 ---
-Me ocupé de la administración y el mantenimiento integral de toda la red: gestión de WordPress, publicación y maquetación de contenidos, SEO con Rank Math y resolución de problemas técnicos en producción. También gestioné hosting, DNS, SSL y migraciones, optimicé el rendimiento, creé imágenes destacadas y di soporte a los editores. Construí sistemas de contenido dinámico a medida (archivos de autor, índices de blog con paginación, catálogos de libros y cursos) para que el contenido se organice y se muestre solo, sin trabajo manual.
+Administro y mantengo toda la red: gestión de WordPress, publicación y maquetación de contenidos, SEO con Rank Math, y hosting, DNS, SSL y migraciones. Además construí sistemas de contenido dinámico a medida —archivos de autor, índices de blog paginados, catálogos de libros y cursos— para que el contenido se organice y se muestre solo.
