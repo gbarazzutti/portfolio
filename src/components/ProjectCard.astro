@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, context, stack, url, displayUrl, image } = entry.data;
+const { title, stack, url, displayUrl, image } = entry.data;
 const { Content } = await render(entry);
 ---
 
@@ -19,16 +19,8 @@ const { Content } = await render(entry);
 
   <h3 class="text-xl font-semibold text-[var(--text)]">{title}</h3>
 
-  <div>
-    <p class="font-semibold text-[var(--text)]">Qué era</p>
-    <p class="mt-1 text-[var(--text-muted)]">{context}</p>
-  </div>
-
-  <div>
-    <p class="font-semibold text-[var(--text)]">Qué hice</p>
-    <div class="mt-1 text-[var(--text-muted)] [&>p]:mt-2 [&>p:first-child]:mt-0">
-      <Content />
-    </div>
+  <div class="text-[var(--text-muted)] [&>p]:mt-2 [&>p:first-child]:mt-0">
+    <Content />
   </div>
 
   <div>

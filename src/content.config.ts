@@ -14,17 +14,14 @@ const services = defineCollection({
   }),
 });
 
-// Projects: the markdown body is "Qué hice"; `context` is the distinct
-// "Qué era" field (spec requires both, rendered under separate labels).
-// `context` has no upper bound — the real brief copy exceeds any short cap.
+// Projects: the markdown body is the full project description (one
+// paragraph — context and contribution together).
 const projects = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/projects' }),
   schema: ({ image }) =>
     z.object({
       title: z.string().min(3).max(80),
       client: z.string().min(2).max(80),
-      context: z.string().min(20),
-      summary: z.string().min(20).optional(),
       image: image(),
       url: z.string().url(),
       displayUrl: z.string().min(3),

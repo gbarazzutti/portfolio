@@ -106,10 +106,17 @@ describe('dist/index.html content matches the content collections', () => {
     }
   });
 
-  it('labels each project card with "Qué era" and "Qué hice" and a Stack line', () => {
-    expect(html.match(/Qué era/g) ?? []).toHaveLength(4);
-    expect(html.match(/Qué hice/g) ?? []).toHaveLength(4);
+  it('gives each project card a description paragraph and a Stack line', () => {
     expect(html.match(/>Stack</g) ?? []).toHaveLength(4);
+    // A distinctive phrase from each project's markdown body must render.
+    for (const phrase of [
+      'sistemas de contenido dinámico a medida',
+      'medir el alcance por país',
+      'las herramientas que usa el equipo',
+      'optimización para móviles',
+    ]) {
+      expect(html, phrase).toContain(phrase);
+    }
   });
 
   it('renders the Spanish section headings', () => {
