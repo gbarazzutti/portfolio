@@ -226,3 +226,66 @@ describe('dist/gracias success page', () => {
     expect(g.querySelectorAll('h1')).toHaveLength(1);
   });
 });
+
+describe('dist/trayectoria page', () => {
+  const distTrayectoria = fileURLToPath(
+    new URL('../../dist/trayectoria/index.html', import.meta.url),
+  );
+  let tHtml = '';
+  let tDoc: Document;
+
+  beforeAll(() => {
+    expect(existsSync(distTrayectoria), 'dist/trayectoria/index.html not found').toBe(true);
+    tHtml = readFileSync(distTrayectoria, 'utf8');
+    tDoc = parseHTML(tHtml).document as unknown as Document;
+  });
+
+  it('has exactly one <h1>', () => {
+    expect(tDoc.querySelectorAll('h1')).toHaveLength(1);
+  });
+
+  it('never skips a heading level in document order', () => {
+    const levels = [...tDoc.querySelectorAll('h1,h2,h3,h4,h5,h6')].map((el) =>
+      Number(el.tagName[1]),
+    );
+    expect(levels[0]).toBe(1);
+    let prev = 0;
+    for (const level of levels) {
+      expect(level).toBeLessThanOrEqual(prev + 1);
+      prev = level;
+    }
+  });
+
+  it('is indexable — robots contains "index" and not "noindex"', () => {
+    const robots = tDoc.querySelector('meta[name="robots"]')?.getAttribute('content') ?? '';
+    expect(robots).toContain('index');
+    expect(robots).not.toContain('noindex');
+  });
+
+  it('names the three roles, the AI group, both languages and the new section', () => {
+    for (const needle of [
+      'Voz Católica',
+      'Dispack',
+      'Independiente',
+      'freelance',
+      'IA en el desarrollo',
+      'Más allá de WordPress',
+      'Astro 5',
+      'Español',
+      'Inglés',
+    ]) {
+      expect(tHtml, needle).toContain(needle);
+    }
+  });
+
+  it('links out to LinkedIn and GitHub', () => {
+    expect(
+      tDoc.querySelector('a[href="https://linkedin.com/in/gbarazzutti"]'),
+      'LinkedIn href',
+    ).not.toBeNull();
+    expect(
+      tDoc.querySelector('a[href="https://github.com/gbarazzutti"]'),
+      'GitHub href',
+    ).not.toBeNull();
+  });
+});
