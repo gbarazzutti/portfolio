@@ -80,12 +80,11 @@ export const stack: SkillGroup[] = [
   {
     name: 'WooCommerce',
     items: [
-      'fundamentos de WooCommerce',
       'mantenimiento de tienda y contenido',
       'configuración vía plugins',
       'actualización de productos y páginas',
       'ajustes de layout',
-      'resolución de problemas básicos',
+      'resolución de incidencias',
     ],
   },
   {
@@ -96,8 +95,8 @@ export const stack: SkillGroup[] = [
       'Flexbox',
       'Grid',
       'diseño responsive y mobile-first',
-      'fundamentos de JavaScript',
-      'comprensión del DOM',
+      'JavaScript',
+      'manipulación del DOM',
       'Chrome DevTools',
       'pruebas cross-browser',
     ],
@@ -107,9 +106,10 @@ export const stack: SkillGroup[] = [
     items: [
       'PHP para personalización de WordPress',
       'desarrollo de temas a medida',
-      'bases de MySQL/PostgreSQL',
-      'consumo de REST API e integraciones básicas de API',
-      'fundamentos de Ruby on Rails',
+      'MySQL / PostgreSQL',
+      'consumo de REST API',
+      'integraciones de API',
+      'Ruby on Rails',
       'MVC y ActiveRecord',
     ],
   },
@@ -130,14 +130,7 @@ export const stack: SkillGroup[] = [
   },
   {
     name: 'Herramientas y flujo de trabajo',
-    items: [
-      'Git y GitHub',
-      'cPanel',
-      'bases de DNS y SSL',
-      'Google Drive',
-      'Trello',
-      'flujos ágiles básicos',
-    ],
+    items: ['Git y GitHub', 'cPanel', 'DNS y SSL', 'Google Drive', 'Trello', 'flujos ágiles'],
   },
   {
     name: 'IA en el desarrollo',
