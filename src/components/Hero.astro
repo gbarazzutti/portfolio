@@ -1,47 +1,57 @@
 ---
-// The single <h1> on the site.
+// The single <h1> on the site, plus a strip of project thumbnails that
+// links down to the Proyectos section.
+import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-import photo from '../assets/photo.png';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 <section
   class="hero-glow relative isolate mx-auto w-full max-w-5xl px-4 pt-20 pb-16 sm:pt-28 sm:pb-24"
 >
-  <div class="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
-    <div class="reveal">
-      <p class="mb-3 text-sm font-semibold tracking-[0.2em] text-[var(--accent)] uppercase">
-        Desarrollador web · Argentina
-      </p>
-      <h1
-        class="max-w-3xl text-4xl leading-[1.05] font-extrabold tracking-tight text-[var(--text)] sm:text-6xl lg:text-5xl"
+  <div class="reveal">
+    <p class="mb-3 text-sm font-semibold tracking-[0.2em] text-[var(--accent)] uppercase">
+      Desarrollador web · Argentina
+    </p>
+    <h1
+      class="max-w-4xl text-4xl leading-[1.05] font-extrabold tracking-tight text-[var(--text)] sm:text-6xl"
+    >
+      Desarrollo sitios web profesionales que trabajan para tu negocio.
+    </h1>
+    <p class="mt-6 max-w-2xl text-lg text-[var(--text-muted)]">
+      Soy Guillermo Barazzutti, desarrollador web con más de 5 años de experiencia, especializado en
+      WordPress. Construyo y mantengo sitios rápidos, claros y fáciles de administrar para empresas,
+      emprendedores y comunidades.
+    </p>
+    <p class="mt-8">
+      <a
+        href="#proyectos"
+        class="inline-block rounded-md bg-[var(--accent)] px-5 py-3 font-semibold text-[var(--on-accent)] shadow-lg shadow-[var(--accent)]/20 transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--accent-hover)] hover:shadow-xl hover:shadow-[var(--accent)]/30 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
       >
-        Desarrollo sitios web profesionales que trabajan para tu negocio.
-      </h1>
-      <p class="mt-6 max-w-2xl text-lg text-[var(--text-muted)]">
-        Soy Guillermo Barazzutti, desarrollador web con más de 5 años de experiencia, especializado
-        en WordPress. Construyo y mantengo sitios rápidos, claros y fáciles de administrar para
-        empresas, emprendedores y comunidades.
-      </p>
-      <p class="mt-8">
-        <a
-          href="#proyectos"
-          class="inline-block rounded-md bg-[var(--accent)] px-5 py-3 font-semibold text-[var(--on-accent)] shadow-lg shadow-[var(--accent)]/20 transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--accent-hover)] hover:shadow-xl hover:shadow-[var(--accent)]/30 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
-        >
-          Ver mis proyectos
-        </a>
-      </p>
-    </div>
+        Ver mis proyectos
+      </a>
+    </p>
 
-    <div class="portrait-glow relative isolate order-first mx-auto w-fit lg:order-none">
-      <Image
-        src={photo}
-        alt="Guillermo Barazzutti"
-        width={400}
-        height={400}
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        class="w-56 rounded-2xl ring-1 ring-[var(--border)] sm:w-72 lg:w-80"
-      />
-    </div>
+    <a
+      href="#proyectos"
+      aria-label="Ver los proyectos"
+      class="mt-14 grid grid-cols-2 gap-3 rounded-lg sm:grid-cols-4 focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+    >
+      {
+        projects.map((p) => (
+          <span class="block overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface-2)] transition duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/50">
+            <Image
+              src={p.data.image}
+              alt=""
+              widths={[240, 480]}
+              sizes="(min-width: 640px) 22vw, 45vw"
+              class="h-24 w-full object-cover object-top sm:h-28"
+            />
+          </span>
+        ))
+      }
+    </a>
   </div>
 </section>

@@ -1,25 +1,40 @@
 ---
-// Plain text block. The portrait lives in the Hero.
+import { Image } from 'astro:assets';
+import photo from '../assets/photo.png';
 ---
 
-<div class="max-w-3xl space-y-4 text-[var(--text-muted)]">
-  <p>
-    Soy desarrollador web hace más de 5 años, especializado en WordPress. Actualmente desarrollo y
-    mantengo más de 20 sitios en producción, muchos de ellos multilingües y con grandes volúmenes de
-    contenido.
-  </p>
-  <p>
-    Antes de dedicarme de lleno al desarrollo web, trabajé como desarrollador backend en Ruby on
-    Rails y pasé varios años en atención al cliente y ventas, una experiencia que hoy me ayuda a
-    entender qué necesita cada cliente antes de escribir una línea de código.
-  </p>
-  <p>
-    Me gusta construir sitios que resuelvan problemas reales: que sean rápidos, fáciles de usar y que
-    el cliente pueda administrar por su cuenta. Trabajo de forma remota desde Argentina.
-  </p>
-  <p class="pt-2 text-[var(--text)]">
-    <span class="font-bold">+5 años</span> de experiencia
-    <span class="mx-2 text-[var(--text-muted)]">·</span>
-    <span class="font-bold">+20 sitios</span> en producción
-  </p>
+<div class="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-12">
+  <div class="max-w-3xl space-y-4 text-[var(--text-muted)]">
+    <p>
+      Soy desarrollador web hace más de 5 años, especializado en WordPress. Actualmente desarrollo y
+      mantengo más de 20 sitios en producción, muchos de ellos multilingües y con grandes volúmenes
+      de contenido.
+    </p>
+    <p>
+      Antes de dedicarme de lleno al desarrollo web, trabajé como desarrollador backend en Ruby on
+      Rails y pasé varios años en atención al cliente y ventas, una experiencia que hoy me ayuda a
+      entender qué necesita cada cliente antes de escribir una línea de código.
+    </p>
+    <p>
+      Me gusta construir sitios que resuelvan problemas reales: que sean rápidos, fáciles de usar y
+      que el cliente pueda administrar por su cuenta. Trabajo de forma remota desde Argentina.
+    </p>
+    <p class="pt-2 text-[var(--text)]">
+      <span class="font-bold">+5 años</span> de experiencia
+      <span class="mx-2 text-[var(--text-muted)]">·</span>
+      <span class="font-bold">+20 sitios</span> en producción
+    </p>
+  </div>
+
+  <div class="portrait-glow relative isolate w-fit">
+    <Image
+      src={photo}
+      alt="Guillermo Barazzutti"
+      width={320}
+      height={320}
+      loading="lazy"
+      decoding="async"
+      class="w-48 rounded-2xl ring-1 ring-[var(--border)] sm:w-60"
+    />
+  </div>
 </div>
