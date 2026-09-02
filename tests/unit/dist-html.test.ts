@@ -195,7 +195,7 @@ describe('dist/index.html Netlify contact form', () => {
     expect(form!.getAttribute('method')?.toUpperCase()).toBe('POST');
     expect(form!.getAttribute('data-netlify')).toBe('true');
     expect(form!.getAttribute('data-netlify-honeypot')).toBe('bot-field');
-    expect(form!.getAttribute('action')).toBe('/gracias');
+    expect(form!.getAttribute('action')).toBe('/gracias/');
     expect(form!.querySelector('input[type="hidden"][name="form-name"][value="contacto"]')).not.toBeNull();
     expect(form!.querySelector('input[name="bot-field"]')).not.toBeNull();
   });
