@@ -160,7 +160,7 @@ describe('dist/index.html head metadata', () => {
 
 describe('dist/index.html contact + regression guards', () => {
   it('links email and WhatsApp with the verified values', () => {
-    expect(doc.querySelector('a[href="mailto:gbarazzutti2@gmail.com"]')).not.toBeNull();
+    expect(doc.querySelector('a[href="mailto:guillermobarazzutti.dev@gmail.com"]')).not.toBeNull();
     const wa = [...doc.querySelectorAll('a[href]')].some((a) =>
       (a.getAttribute('href') ?? '').startsWith('https://wa.me/5493813667657'),
     );
