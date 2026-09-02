@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { beforeAll, describe, expect, it } from 'vitest';
@@ -7,6 +8,7 @@ import matter from 'gray-matter';
 const distIndex = fileURLToPath(new URL('../../dist/index.html', import.meta.url));
 const servicesDir = fileURLToPath(new URL('../../src/content/services', import.meta.url));
 const projectsDir = fileURLToPath(new URL('../../src/content/projects', import.meta.url));
+const netlifyToml = fileURLToPath(new URL('../../netlify.toml', import.meta.url));
 
 function readFrontmatter(dir: string) {
   return readdirSync(dir)
@@ -224,6 +226,52 @@ describe('dist/gracias success page', () => {
     const g = parseHTML(readFileSync(distGracias, 'utf8')).document as unknown as Document;
     expect(g.querySelector('meta[name="robots"]')?.getAttribute('content')).toContain('noindex');
     expect(g.querySelectorAll('h1')).toHaveLength(1);
+  });
+});
+
+describe('netlify.toml security headers', () => {
+  const toml = readFileSync(netlifyToml, 'utf8');
+  const csp =
+    toml.match(/Content-Security-Policy\s*=\s*"([^"]+)"/)?.[1] ?? '';
+
+  it('declares a CSP and the standard hardening headers for "/*"', () => {
+    expect(toml).toMatch(/for\s*=\s*"\/\*"/);
+    expect(csp).toContain("default-src 'self'");
+    expect(csp).toContain("object-src 'none'");
+    expect(csp).toContain("frame-ancestors 'none'");
+    expect(csp).toContain("form-action 'self'");
+    for (const header of [
+      'X-Frame-Options',
+      'X-Content-Type-Options',
+      'Referrer-Policy',
+      'Permissions-Policy',
+    ]) {
+      expect(toml, header).toContain(header);
+    }
+  });
+
+  it('whitelists every inline <script> the build emits by sha256 hash', () => {
+    const pages = ['index.html', 'gracias/index.html', 'trayectoria/index.html'].map(
+      (p) => fileURLToPath(new URL(`../../dist/${p}`, import.meta.url)),
+    );
+    const hashes = new Set<string>();
+    for (const page of pages) {
+      const pageHtml = readFileSync(page, 'utf8');
+      for (const m of pageHtml.matchAll(
+        /<script(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/g,
+      )) {
+        if (/application\/ld\+json/.test(m[1])) continue;
+        hashes.add(`sha256-${createHash('sha256').update(m[2], 'utf8').digest('base64')}`);
+      }
+    }
+    expect(hashes.size).toBeGreaterThan(0);
+    expect(csp).toContain("script-src 'self'");
+    expect(csp).not.toContain("'unsafe-inline'");
+    for (const hash of hashes) {
+      expect(csp, `CSP is missing ${hash} — recompute the hashes in netlify.toml`).toContain(
+        hash,
+      );
+    }
   });
 });
 

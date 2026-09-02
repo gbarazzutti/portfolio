@@ -5,6 +5,26 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Security headers for every response.
+# HSTS is added by Netlify automatically, so it is not repeated here.
+#
+# The CSP is strict: the site loads no third-party scripts, styles, fonts or
+# images. `script-src` whitelists the three inline scripts Astro emits (no-flash
+# theme, theme toggle, nav/reveal) by sha256 hash instead of 'unsafe-inline'.
+# If those scripts OR the Astro build change, the hashes change too — the
+# "inline script hashes" unit test fails and points here. Recompute with:
+#   node -e "const c=require('crypto'),h=require('fs').readFileSync('dist/index.html','utf8');for(const m of h.matchAll(/<script(?![^>]*src=)([^>]*)>([\s\S]*?)<\/script>/g)){if(/ld\+json/.test(m[1]))continue;console.log('sha256-'+c.createHash('sha256').update(m[2]).digest('base64'))}"
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self' 'sha256-x9vzneffZy7qDN7W6qC4s/9b/9rp2pZe71i7c0SBtz0=' 'sha256-D/HY3GfgxwR9Hj0Ya5PqzraMbJVWa1Rpr8po2AQ1lHY=' 'sha256-Z6ftVTj9VQbZyviVzZD+IYi528OXzimsz8jgmOTKikc='; connect-src 'self'; upgrade-insecure-requests"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    X-XSS-Protection = "0"
+
 [[headers]]
   for = "/_astro/*"
   [headers.values]
