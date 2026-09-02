@@ -10,7 +10,13 @@
       always registers it, regardless of how the Astro page is processed.
       Not linked from anywhere; not for humans.
     -->
-    <form name="contacto" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+    <form
+      name="contacto"
+      method="POST"
+      action="/gracias/"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+    >
       <input type="hidden" name="form-name" value="contacto" />
       <input name="bot-field" />
       <input name="nombre" type="text" />
